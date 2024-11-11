@@ -1,112 +1,81 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<style>
-  body { 
-    background-image: url('bg.jpg'); 
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-  }
-  .logo-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px; 
-  }
-
-  .logo-container img {
-    width: 250px; 
-    height: auto;
-  }
-
-  .container {
-    background-color: snow;
-    padding: 40px;
-    border-radius: 10px;
-    text-align: center;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complex JavaScript Animation</title>
+  <style>
+    #animate {
+      width: 50px;
+      height: 50px;
+      background-color: red;
+      position: absolute;
+      opacity: 1;
+    }
     
-  }
-
-  input[type="text"],
-  input[type="number"] {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border: 2px solid #ccc;
-    
-    font-weight: bold;
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-  
-
-  button, a {
-    background-color: black; 
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 10px 0;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-   .college-name {
-    font-size: 50px; 
-    font-weight: bold;
-    color:black ; 
-    text-align: center;
-    margin-top: 20px;
-  }
-  .container label {
-            ;
-            display: block;
-            margin-bottom: 5px;
-            width: 40%;
-            text-align: left; 
-            
-        }
-
-</style>
+  </style>
 </head>
 <body>
 
-  <div class="logo-container">
-    <img src="gmiu.png" alt="College Logo">
-  </div>
+<div id="animate"></div>
 
-  <div class="container">
-    
-   
-      <label for="subjectName">Subject Name:</label>
-      <input type="text" id="subjectName" value="Web Design" readonly>
-  
-      <label for="subjectCode">Subject Code:</label>
-      <input type="text" id="subjectCode" value="BETCE13304" readonly>
-  
-      <label for="studentName">Student Name:</label>
-      <input type="text" id="studentName" value="GOHIL RUSHIRAJSINH VIKRAMSINH" readonly>
-  
-      <label for="enNo">Enrollment Number:</label>
-      <input type="text" id="enNo" value="20230905090060" readonly>
+<button onclick="startComplexAnimation()">Start Complex Animation</button>
 
-    <a href="ala1.html">ALA-1</a>
-    <a href="ala2.html">ALA-2</a>
-    <a href="ala3.html">ALA-3</a>
-  </div>
-
-  <div class="college-name">
-    Gyanmanjari Innovative University
-  </div>
+<script>
   
+  function startComplexAnimation() {
+    var elem = document.getElementById("animate");
+    var posX = 0;
+    var posY = 0;
+    var angle = 0;
+    var scale = 1;
+    var opacity = 1;
+    var id = setInterval(frame, 10); 
+
+    function frame() {
+      if (posX >= 300 || posY >= 300) {  
+        clearInterval(id);
+      } else {
+        posX++;  // Move right
+        posY++;  // Move down
+        angle += 2;  // Rotate
+        scale += 0.005;  // Slightly increase size
+        opacity -= 0.002;  // Fade out
+
+        
+        elem.style.left = posX + 'px';
+        elem.style.top = posY + 'px';
+        elem.style.transform = `rotate(${angle}deg) scale(${scale})`;
+        elem.style.opacity = opacity;
+
+        
+        var colorValue = posX % 255;  // Change based on position
+        elem.style.backgroundColor = `rgb(${colorValue}, 100, 150)`;
+      }
+    }
+  }
+</script>
+<script>
+  function goBack() {
+      window.history.back();
+  }
+</script>
+
+<style>
+  #backBtn {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+  }
+</style>
+<button onclick="goBack()" id="backBtn">Go Back</button>
+
+
 </body>
 </html>
